@@ -18,7 +18,6 @@ class HotgamesContainer extends Component {
 
   componentDidMount() {
     fetchGames().then(games => {
-      console.log(games);
       this.setState({ games });
     });
   }
