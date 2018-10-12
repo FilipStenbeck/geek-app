@@ -7,6 +7,8 @@ import HotgamesContainer from './components/HotgamesContainer';
 
 import './App.css';
 
+const renderGame = props => <Dummy id={props.match.params.id} />;
+
 class App extends Component {
   render() {
     return (
@@ -16,6 +18,7 @@ class App extends Component {
           <div>
             <Route exact path="/" component={HotgamesContainer} />
             <Route exact path="/dummy" component={Dummy} />
+            <Route exact path="/game/:id" render={renderGame} />
           </div>
         </BrowserRouter>
       </div>
