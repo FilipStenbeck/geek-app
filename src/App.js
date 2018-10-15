@@ -4,10 +4,11 @@ import Header from './components/Header';
 import Dummy from './Dummy';
 
 import HotgamesContainer from './components/HotgamesContainer';
+import GameContainer from './components/GameContainer';
 
 import './App.css';
 
-const renderGame = props => <Dummy id={props.match.params.id} />;
+const renderGame = props => <GameContainer id={props.match.params.id} />;
 
 class App extends Component {
   render() {

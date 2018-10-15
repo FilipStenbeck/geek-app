@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -36,6 +37,7 @@ function TitlebarGridList(props) {
   const tileData = games.map(game => ({
     img: game.thumbnail,
     title: game.name,
+    gameId: game.id,
   }));
 
   //TODO This need refactoring
@@ -54,9 +56,11 @@ function TitlebarGridList(props) {
               <GridListTileBar
                 title={tile.title}
                 actionIcon={
-                  <IconButton className={classes.icon}>
-                    <InfoIcon />
-                  </IconButton>
+                  <Link to={'/game/' + tile.gameId}>
+                    <IconButton className={classes.icon}>
+                      <InfoIcon />
+                    </IconButton>
+                  </Link>
                 }
               />
             </GridListTile>
