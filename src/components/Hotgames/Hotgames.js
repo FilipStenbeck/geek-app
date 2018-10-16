@@ -51,18 +51,18 @@ function TitlebarGridList(props) {
             </ListSubheader>
           </GridListTile>
           {tileData.map(tile => (
-            <GridListTile className={classes.tile} key={tile.img}>
+            <GridListTile key={tile.img} className={classes.tile}>
               <img src={tile.img} alt={tile.title} />
-              <GridListTileBar
-                title={tile.title}
-                actionIcon={
-                  <Link to={'/game/' + tile.gameId}>
+              <Link to={'/game/' + tile.gameId}>
+                <GridListTileBar
+                  title={tile.title}
+                  actionIcon={
                     <IconButton className={classes.icon}>
                       <InfoIcon />
                     </IconButton>
-                  </Link>
-                }
-              />
+                  }
+                />
+              </Link>
             </GridListTile>
           ))}
         </GridList>
