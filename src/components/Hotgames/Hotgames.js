@@ -26,6 +26,10 @@ const styles = theme => ({
     margin: 12,
     maxWidth: 300,
   },
+  thumbnail: {
+    width: 300,
+    height: 300,
+  },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
@@ -52,8 +56,12 @@ function TitlebarGridList(props) {
           </GridListTile>
           {tileData.map(tile => (
             <GridListTile key={tile.img} className={classes.tile}>
-              <img src={tile.img} alt={tile.title} />
               <Link to={'/game/' + tile.gameId}>
+                <img
+                  className={classes.thumbnail}
+                  src={tile.img}
+                  alt={tile.title}
+                />
                 <GridListTileBar
                   title={tile.title}
                   actionIcon={
@@ -80,15 +88,21 @@ function TitlebarGridList(props) {
         </GridListTile>
         {tileData.map(tile => (
           <GridListTile className={classes.tile} cols={1} key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
+            <Link to={'/game/' + tile.gameId}>
+              <img
+                className={classes.thumbnail}
+                src={tile.img}
+                alt={tile.title}
+              />
+              <GridListTileBar
+                title={tile.title}
+                actionIcon={
+                  <IconButton className={classes.icon}>
+                    <InfoIcon />
+                  </IconButton>
+                }
+              />
+            </Link>
           </GridListTile>
         ))}
       </GridList>
