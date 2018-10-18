@@ -23,7 +23,7 @@ const styles = theme => ({
     width: '80%',
   },
   tile: {
-    marginBottom: 6,
+    margin: 12,
     maxWidth: 300,
   },
   icon: {
