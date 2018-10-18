@@ -31,7 +31,7 @@ const styles = theme => ({
   },
 });
 
-function GameDescriptionIntro(props) {
+function DescriptionIntro(props) {
   const { game, classes } = props;
   if (!game.description) {
     return null;
@@ -45,7 +45,7 @@ function GameDescriptionIntro(props) {
   );
 }
 
-function GameDescriptionMain(props) {
+function DescriptionMain(props) {
   const { game, classes } = props;
   if (!game.description || !game.description.main) {
     return null;
@@ -54,6 +54,32 @@ function GameDescriptionMain(props) {
     <Grid key={i} item xs={12}>
       <Typography className={classes.description}>{text}</Typography>
     </Grid>
+  ));
+}
+
+function Mechanics(props) {
+  const { game, classes } = props;
+  if (!game.mechanics) {
+    return null;
+  }
+
+  return game.mechanics.map((text, i) => (
+    <Typography key={i} className={classes.description}>
+      {text}
+    </Typography>
+  ));
+}
+
+function Categories(props) {
+  const { game, classes } = props;
+  if (!game.categories) {
+    return null;
+  }
+
+  return game.categories.map((text, i) => (
+    <Typography key={i} className={classes.description}>
+      {text}
+    </Typography>
   ));
 }
 
@@ -75,8 +101,38 @@ function Game(props) {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <div>
-                <GameDescriptionIntro game={game} classes={classes} />
-                <GameDescriptionMain game={game} classes={classes} />
+                <DescriptionIntro game={game} classes={classes} />
+                <DescriptionMain game={game} classes={classes} />
+              </div>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </Grid>
+
+        <Grid item xs={12}>
+          <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.heading}>
+                <strong>Mechanics</strong>
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <div>
+                <Mechanics game={game} classes={classes} />
+              </div>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </Grid>
+
+        <Grid item xs={12}>
+          <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.heading}>
+                <strong>Categories</strong>
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <div>
+                <Categories game={game} classes={classes} />
               </div>
             </ExpansionPanelDetails>
           </ExpansionPanel>
