@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    margin: 12,
+    margin: 20,
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -59,7 +59,7 @@ function GameDescriptionMain(props) {
 
 function Game(props) {
   const { classes, game } = props;
-  console.log(game.description);
+  console.log(game);
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -81,6 +81,7 @@ function Game(props) {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Grid>
+
         <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
