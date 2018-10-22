@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import VideoCard from './VideoCard';
 
 const styles = theme => ({
   root: {
@@ -83,6 +84,19 @@ function Categories(props) {
   ));
 }
 
+function Videos(props) {
+  const { game } = props;
+  if (!game.videos) {
+    return null;
+  }
+
+  return game.videos.map(video => (
+    <Grid key={video.id} item xs={12} sm={6}>
+      <VideoCard video={video} />
+    </Grid>
+  ));
+}
+
 function Game(props) {
   const { classes, game } = props;
   console.log(game);
@@ -137,24 +151,19 @@ function Game(props) {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Grid>
-
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={12}>
+          <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.heading}>
+                <strong>Videos</strong>
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Grid container spacing={24}>
+                <Videos game={game} classes={classes} />
+              </Grid>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         </Grid>
       </Grid>
     </div>
