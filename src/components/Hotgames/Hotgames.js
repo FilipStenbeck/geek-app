@@ -16,9 +16,11 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    marginLeft: 25,
   },
+
   gridList: {
-    width: '80%',
+    width: '100%',
   },
   tile: {
     margin: 12,
