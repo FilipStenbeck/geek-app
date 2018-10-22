@@ -27,7 +27,7 @@ const styles = theme => ({
     maxWidth: 300,
   },
   thumbnail: {
-    width: 300,
+    width: '100%',
     height: 300,
   },
   icon: {
@@ -44,43 +44,18 @@ function TitlebarGridList(props) {
     gameId: game.id,
   }));
 
-  //TODO This need refactoring
-  if (isWidthUp('sm', width)) {
-    return (
-      <div className={classes.root}>
-        <GridList className={classes.gridList} cellHeight={280}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">
-              <h3>Popular games</h3>
-            </ListSubheader>
-          </GridListTile>
-          {tileData.map(tile => (
-            <GridListTile key={tile.img} className={classes.tile}>
-              <Link to={'/game/' + tile.gameId}>
-                <img
-                  className={classes.thumbnail}
-                  src={tile.img}
-                  alt={tile.title}
-                />
-                <GridListTileBar title={tile.title} />
-              </Link>
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
-    );
-  }
+  const columns = isWidthUp('sm', width) ? 2 : 1;
 
   return (
     <div className={classes.root}>
-      <GridList cols={1} cellHeight={280} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
+      <GridList cols={columns} cellHeight={280} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={columns} style={{ height: 'auto' }}>
           <ListSubheader component="div">
             <h3>Popular games</h3>
           </ListSubheader>
         </GridListTile>
         {tileData.map(tile => (
-          <GridListTile className={classes.tile} cols={1} key={tile.img}>
+          <GridListTile className={classes.tile} key={tile.img}>
             <Link to={'/game/' + tile.gameId}>
               <img
                 className={classes.thumbnail}
