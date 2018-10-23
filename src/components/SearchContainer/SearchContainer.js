@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Hotgames from '../Hotgames';
+
+const unique = names => names.filter((v, i) => names.indexOf(v) === i);
 
 const search = query => {
   return fetch(`https://geek-api.herokuapp.com/search?query=${query}`).then(
@@ -29,9 +32,12 @@ class SearchContainer extends Component {
       first10.forEach(item =>
         fetchGames(item.id).then(game => {
           const prev = this.state.result;
-          const list = [...prev, ...[game]];
-          console.log({ list });
-          this.setState({ result: list });
+          const list = [...[game], ...prev];
+          const ids = list.map(game => game.id);
+          const result = unique(ids).map(
+            id => list.filter(game => game.id === id)[0]
+          );
+          this.setState({ result: result });
         })
       );
     });
@@ -46,7 +52,7 @@ class SearchContainer extends Component {
   }
 
   render() {
-    return <div>results: {this.state.result.length}</div>;
+    return <Hotgames header="Search results" games={this.state.result} />;
   }
 }
 

@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 function TitlebarGridList(props) {
-  const { classes, games, width } = props;
+  const { classes, games, width, header } = props;
 
   const tileData = games.map(game => ({
     img: game.thumbnail,
@@ -51,11 +51,11 @@ function TitlebarGridList(props) {
       <GridList cols={columns} cellHeight={280} className={classes.gridList}>
         <GridListTile key="Subheader" cols={columns} style={{ height: 'auto' }}>
           <ListSubheader component="div">
-            <h3>Popular games</h3>
+            <h3>{header}</h3>
           </ListSubheader>
         </GridListTile>
-        {tileData.map(tile => (
-          <GridListTile className={classes.tile} key={tile.img}>
+        {tileData.map((tile, i) => (
+          <GridListTile className={classes.tile} key={i}>
             <Link to={'/game/' + tile.gameId}>
               <img
                 className={classes.thumbnail}

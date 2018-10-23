@@ -98,7 +98,6 @@ function Videos(props) {
 
 function Game(props) {
   const { classes, game } = props;
-  console.log(game);
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>

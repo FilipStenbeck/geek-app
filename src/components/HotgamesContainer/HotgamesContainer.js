@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Hotgames from '../Hotgames';
-//import { fetchGames } from './utils';
 
 const fetchGames = () => {
   return fetch('https://geek-api.herokuapp.com/hotgames').then(response => {
