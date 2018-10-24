@@ -42,9 +42,14 @@ const styles = theme => ({
     marginTop: 10,
     marginBottom: 10,
   },
+  imageContainer: {
+    [theme.breakpoints.up('md')]: {
+      height: 600,
+    },
+  },
   heroImg: {
-    width: '90%',
-    maxWidth: 600,
+    maxHeight: 600,
+    maxWidth: '100%',
   },
   description: {
     textAlign: 'justify',
@@ -126,7 +131,13 @@ function Game(props) {
     <div className={classes.root}>
       <Grid container spacing={24}>
         <Grid item xs={12}>
-          <img className={classes.heroImg} src={game.image} alt={game.title} />
+          <div className={classes.imageContainer}>
+            <img
+              className={classes.heroImg}
+              src={game.image}
+              alt={game.title}
+            />
+          </div>
         </Grid>
         <Hidden xsDown>
           <Grid item xs={4} />
