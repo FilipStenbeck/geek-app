@@ -1,4 +1,5 @@
 import React from 'react';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -6,6 +7,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Hidden from '@material-ui/core/Hidden';
+import withWidth from '@material-ui/core/withWidth';
 import VideoCard from './VideoCard';
 
 const styles = theme => ({
@@ -17,6 +20,27 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  titleBox: {
+    marginTop: -70,
+    background: 'white',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  titleLink: {
+    textDecoration: 'none',
+    color: '#5d5c5c;',
+    paddingBottom: 2,
+    display: 'inline-flex',
+    '&:hover': {
+      boxShadow: 'inset 0 -2px 0 #5d5c5c;',
+    },
+  },
+
+  titleText: {
+    marginTop: 10,
+    marginBottom: 10,
   },
   heroImg: {
     width: '90%',
@@ -104,6 +128,30 @@ function Game(props) {
         <Grid item xs={12}>
           <img className={classes.heroImg} src={game.image} alt={game.title} />
         </Grid>
+        <Hidden xsDown>
+          <Grid item xs={4} />
+          <Grid className={classes.titleBox} item xs={4}>
+            <a
+              className={classes.titleLink}
+              href={'https://boardgamegeek.com/boardgame/' + game.id}
+              target="top"
+            >
+              <h3 className={classes.titleText}>{game.name}</h3>
+            </a>
+          </Grid>
+          <Grid item xs={4} />
+        </Hidden>
+        <Hidden smUp>
+          <Grid item xs={12}>
+            <a
+              className={classes.titleLink}
+              href={'https://boardgamegeek.com/boardgame/' + game.id}
+              target="top"
+            >
+              <h3 className={classes.titleText}>{game.name}</h3>
+            </a>
+          </Grid>
+        </Hidden>
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -168,4 +216,7 @@ function Game(props) {
   );
 }
 
-export default withStyles(styles)(Game);
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(Game);
