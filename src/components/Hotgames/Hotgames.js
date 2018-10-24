@@ -7,6 +7,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Grow from '@material-ui/core/Grow';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const styles = theme => ({
@@ -55,16 +56,18 @@ function TitlebarGridList(props) {
           </ListSubheader>
         </GridListTile>
         {tileData.map((tile, i) => (
-          <GridListTile className={classes.tile} key={i}>
-            <Link to={'/game/' + tile.gameId}>
-              <img
-                className={classes.thumbnail}
-                src={tile.img}
-                alt={tile.title}
-              />
-              <GridListTileBar title={tile.title} />
-            </Link>
-          </GridListTile>
+          <Grow timeout={{ enter: 2000 }} key={i} in={true}>
+            <GridListTile className={classes.tile} key={i}>
+              <Link to={'/game/' + tile.gameId}>
+                <img
+                  className={classes.thumbnail}
+                  src={tile.img}
+                  alt={tile.title}
+                />
+                <GridListTileBar title={tile.title} />
+              </Link>
+            </GridListTile>
+          </Grow>
         ))}
       </GridList>
     </div>

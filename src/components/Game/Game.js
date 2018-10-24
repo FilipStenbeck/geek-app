@@ -8,6 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Hidden from '@material-ui/core/Hidden';
+import Grow from '@material-ui/core/Grow';
 import withWidth from '@material-ui/core/withWidth';
 import VideoCard from './VideoCard';
 
@@ -15,6 +16,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     margin: 20,
+    paddingTop: 40,
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: 100,
+      paddingRight: 100,
+    },
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -27,6 +33,8 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    borderRadius: 8,
+    zIndex: 2,
   },
   titleLink: {
     textDecoration: 'none',
@@ -44,12 +52,12 @@ const styles = theme => ({
   },
   imageContainer: {
     [theme.breakpoints.up('md')]: {
-      height: 600,
+      height: 500,
     },
   },
   heroImg: {
-    maxHeight: 600,
-    maxWidth: '100%',
+    maxHeight: 500,
+    width: '100%',
   },
   description: {
     textAlign: 'justify',
@@ -132,11 +140,13 @@ function Game(props) {
       <Grid container spacing={24}>
         <Grid item xs={12}>
           <div className={classes.imageContainer}>
-            <img
-              className={classes.heroImg}
-              src={game.image}
-              alt={game.title}
-            />
+            <Grow timeout={{ enter: 2000 }} in={true}>
+              <img
+                className={classes.heroImg}
+                src={game.image}
+                alt={game.title}
+              />
+            </Grow>
           </div>
         </Grid>
         <Hidden xsDown>
@@ -163,6 +173,7 @@ function Game(props) {
             </a>
           </Grid>
         </Hidden>
+
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
