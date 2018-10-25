@@ -21,6 +21,7 @@ const styles = theme => ({
       paddingLeft: 100,
       paddingRight: 100,
     },
+    maxWidth: 1080,
   },
   paper: {
     padding: theme.spacing.unit * 2,
