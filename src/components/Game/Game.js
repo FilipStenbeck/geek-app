@@ -62,11 +62,6 @@ const styles = theme => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
-  overrides: {
-    typography: {
-      useNextVariants: true,
-    },
-  },
 });
 
 function DescriptionIntro(props) {
@@ -76,7 +71,7 @@ function DescriptionIntro(props) {
   }
   return (
     <Grid item xs={12}>
-      <Typography className={classes.description}>
+      <Typography gutterBottom className={classes.description}>
         {game.description.intro}
       </Typography>
     </Grid>
@@ -90,7 +85,9 @@ function DescriptionMain(props) {
   }
   return game.description.main.map((text, i) => (
     <Grid key={i} item xs={12}>
-      <Typography className={classes.description}>{text}</Typography>
+      <Typography gutterBottom className={classes.description}>
+        {text}
+      </Typography>
     </Grid>
   ));
 }
@@ -102,7 +99,7 @@ function Mechanics(props) {
   }
 
   return game.mechanics.map((text, i) => (
-    <Typography key={i} className={classes.description}>
+    <Typography variant="body2" key={i} className={classes.description}>
       {text}
     </Typography>
   ));
@@ -115,7 +112,7 @@ function Categories(props) {
   }
 
   return game.categories.map((text, i) => (
-    <Typography key={i} className={classes.description}>
+    <Typography variant="body2" key={i} className={classes.description}>
       {text}
     </Typography>
   ));
@@ -158,7 +155,9 @@ function Game(props) {
               href={'https://boardgamegeek.com/boardgame/' + game.id}
               target="top"
             >
-              <h3 className={classes.titleText}>{game.name}</h3>
+              <Typography variant="overline">
+                <strong>{game.name}</strong>
+              </Typography>
             </a>
           </Grid>
           <Grid item xs={4} />
@@ -178,8 +177,8 @@ function Game(props) {
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>
-                <strong>Description</strong>
+              <Typography variant="overline" className={classes.heading}>
+                Description
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -194,8 +193,8 @@ function Game(props) {
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>
-                <strong>Mechanics</strong>
+              <Typography variant="overline" className={classes.heading}>
+                Mechanics
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -209,8 +208,8 @@ function Game(props) {
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>
-                <strong>Categories</strong>
+              <Typography variant="overline" className={classes.heading}>
+                Categories
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -223,8 +222,8 @@ function Game(props) {
         <Grid item xs={12}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>
-                <strong>Videos</strong>
+              <Typography variant="overline" className={classes.heading}>
+                Videos
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
