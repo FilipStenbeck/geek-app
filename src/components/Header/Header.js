@@ -94,7 +94,7 @@ class SearchAppBar extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar style={{ backgroundColor: 'black' }} position="static">
           <Toolbar>
             <Typography
               className={classes.title}

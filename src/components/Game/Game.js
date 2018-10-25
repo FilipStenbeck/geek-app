@@ -23,11 +23,6 @@ const styles = theme => ({
     },
     maxWidth: 1080,
   },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
   titleBox: {
     marginTop: -70,
     background: 'white',
@@ -66,6 +61,11 @@ const styles = theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+  },
+  overrides: {
+    typography: {
+      useNextVariants: true,
+    },
   },
 });
 
